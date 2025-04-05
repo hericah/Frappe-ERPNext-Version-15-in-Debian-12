@@ -216,8 +216,3 @@ Open url http://[Server IP]:8000 to login
 ### Restart all required services
     sudo systemctl start mariadb
     sudo supervisorctl restart all
-
-
-
-
-    
