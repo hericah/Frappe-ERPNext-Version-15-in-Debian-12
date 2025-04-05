@@ -16,25 +16,10 @@
 -----
 
 
-### STEP 1 Install git
-    sudo apt-get install git
+### STEP 1 Install dependencies
+    sudo apt-get install git python3-dev python3-setuptools python3-pip python3-virtualenv software-properties-common
 
-### STEP 2 install python-dev
-
-    sudo apt-get install python3-dev
-
-### STEP 3 Install setuptools and pip (Python's Package Manager).
-
-    sudo apt-get install python3-setuptools python3-pip
-
-### STEP 4 Install virtualenv
-    
-    sudo apt install python3-virtualenv
-    
-
-### STEP 5 Install MariaDB
-
-    sudo apt-get install software-properties-common
+### STEP 2 Install MariaDB
     sudo apt install mariadb-server
     sudo mysql_secure_installation
     
@@ -74,14 +59,9 @@
        Reload privilege tables now? [Y/n] Y
        ... Success!
 
- 
-### STEP 6  MySQL database development files
+### STEP 4 Edit the mariadb configuration ( unicode character encoding )
 
-    sudo apt-get install mariadb-client
-
-### STEP 7 Edit the mariadb configuration ( unicode character encoding )
-
-    sudo nano /etc/mysql/mariadb.conf.d/51-server.cnf
+    sudo vi /etc/mysql/mariadb.conf.d/51-server.cnf
 
 add this to the 51-server.cnf file
 
@@ -113,42 +93,42 @@ Now press (Ctrl-X) to exit
 
     sudo systemctl restart mariadb
 
-### STEP 8 install Redis
+### STEP 5 install Redis
     
     sudo apt-get install redis-server
 
-### STEP 9 install Node.js 20.X package
+### STEP 6 install Node.js 20.X package
 
     sudo apt install curl 
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
     source ~/.profile
     nvm install 20
 
-### STEP 10  install Yarn
+### STEP 7  install Yarn
 
     sudo apt-get install npm
 
     sudo npm install -g yarn
 
-### STEP 11 install wkhtmltopdf
+### STEP 8 install wkhtmltopdf
 
     sudo apt-get install xvfb libfontconfig wkhtmltopdf
     
 
-### STEP 12 install frappe-bench
+### STEP 9 install frappe-bench
 
     sudo pip3 install frappe-bench --break-system-packages
     
     bench --version
     
-### STEP 13 initilise the frappe bench & install frappe latest version 
+### STEP 10 initilise the frappe bench & install frappe latest version 
 
     bench init frappe-bench --frappe-branch version-15
     
     cd frappe-bench/
     bench start
     
-### STEP 14 create a site in frappe bench 
+### STEP 11 create a site in frappe bench 
     
     bench new-site subdomain.mydomain.com
     
