@@ -1,52 +1,18 @@
-# Frappe-ERPNext Version-15 in Ubuntu 22.04 LTS
-A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
-
-#### Refer this for default python 3.11 setup
-
-- [D-codeE Video Tutorial](https://youtu.be/TReR0I0O1Xo)
-
-### Pre-requisites 
-
-      Python 3.11+
-      Node.js 18+
-      
-      Redis 5                                       (caching and real time updates)
-      MariaDB 10.3.x / Postgres 9.5.x               (to run database driven apps)
-      yarn 1.12+                                    (js dependency manager)
-      pip 20+                                       (py dependency manager)
-      wkhtmltopdf (version 0.12.5 with patched qt)  (for pdf generation)
-      cron                                          (bench's scheduled jobs: automated certificate renewal, scheduled backups)
-      NGINX                                         (proxying multitenant sites in production)
-
-
-------
-### Steps to Install python 3.11.xx
-------
-
-> ## `Note: If you are using ubuntu 23.xx or latest  the default python version is 3.11.xx. So you can skip the python 3.11 installation steps`
-    
-#### First, import the Python repository with the most up-to-date stable releases.
-
-      sudo add-apt-repository ppa:deadsnakes/ppa -y
+# Frappe-ERPNext Version-15 in Ubuntu 22.04 LTS  
+#### Update repository database link
       sudo apt update
       
-#### install Python 3.11 by executing the following command in your terminal:
+#### Upgrade system package to latest stable version:
+      sudo apt upgrade
+      
+#### Create new user:
+      sudo adduser --home /home/(New-Frappe-User) (New-Frappe-User)
+      usermod -aG sudo (New-Frappe-User)
+      su (New-Frappe-User)
+      cd /home/(New-Frappe-User)
 
-      sudo apt install python3.11
-      python3.11 --version
-
-    
-#### To install all the extras in one go, run the following command.
-
-      sudo apt install python3.11-full
-
-
-
-#### Refer this for default python 3.11 setup
-
-- [www.linuxcapable.com](https://www.linuxcapable.com/how-to-install-python-3-11-on-ubuntu-linux/#google_vignette)
-- [ubuntuhandbook.org](https://ubuntuhandbook.org/index.php/2022/10/python-3-11-released-how-install-ubuntu)
-
+#### Reboot system:
+      sudo reboot
 -----
 
 
@@ -114,7 +80,7 @@ A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
     
 ### STEP 6  MySQL database development files
 
-    sudo apt-get install libmysqlclient-dev
+    sudo apt-get install mariadb-client
 
 ### STEP 7 Edit the mariadb configuration ( unicode character encoding )
 
