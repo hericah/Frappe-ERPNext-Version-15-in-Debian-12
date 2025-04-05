@@ -194,7 +194,7 @@ Open url http://[Server IP]:8000 to login
     sudo bench setup lets-encrypt subdomain.mydomain.com
 
 ---
-# Fixing Layout Issue / Messy Layout
+# Fixing Layout Not Rendering Properly
 ## Solution 1
 ### Check the NGINX error log
     tail -n 100 -f /var/log/nginx/error.log
