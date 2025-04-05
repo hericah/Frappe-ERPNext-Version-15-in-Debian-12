@@ -168,6 +168,56 @@ Open url http://[Server IP]:8000 to login
     sudo bench setup nginx
     
 #### Restart Supervisor and Launch Production Mode
-    sudo supervisorctl restart all sudo bench setup production erpnext
+    sudo supervisorctl restart all 
+    sudo bench setup production erpnext
+
+---
+# Domain name and SSL
+### Install certbot
+    sudo apt install --reinstall certbot python3-certbot
+
+### Enable multitenancy ERPNext
+    bench config dns_multitenant on
+
+### Refresh NGINX
+    bench setup nginx
+    sudo systemctl restart nginx
+
+### Add domain
+    bench setup add-domain subdomain.mydomain.com
+
+### Add A Record in domain managament dashboard
+    Open domain provider panel, example cloudflare
+    Create new 'A' record, set IPv4 to ERPNext VPS server's
+
+### Intiate SSL Certificate
+    sudo bench setup lets-encrypt subdomain.mydomain.com
+
+---
+# Fixing Layout Issue / Messy Layout
+## Solution 1
+### Check the NGINX error log
+    tail -n 100 -f /var/log/nginx/error.log
+    
+### Change permission of the home directory
+    chmod -R o+rx /home/[username, ex: erpnext]
+    
+## Solution 2
+### Rebuild website assets
+    bench build
+    
+### If during build encouter OUT OF MEMORY error, stop first some services
+    sudo supervisorctl stop all
+    sudo systemctl stop mariadb
+
+### Ensure all database schema is up to date
+    bench migrate
+
+### Restart all required services
+    sudo systemctl start mariadb
+    sudo supervisorctl restart all
+
+
+
 
     
