@@ -75,9 +75,6 @@
        ... Success!
 
  
-    
-    
-    
 ### STEP 6  MySQL database development files
 
     sudo apt-get install mariadb-client
@@ -140,11 +137,7 @@ Now press (Ctrl-X) to exit
 
 ### STEP 12 install frappe-bench
 
-    virtualenv .venv
-    
-    source .venv/bin/active
-    
-    pip3 install frappe-bench
+    sudo pip3 install frappe-bench --break-system-packages
     
     bench --version
     
@@ -157,9 +150,9 @@ Now press (Ctrl-X) to exit
     
 ### STEP 14 create a site in frappe bench 
     
-    bench new-site myerpnext.com
+    bench new-site subdomain.mydomain.com
     
-    bench --site erp.wispro.biz.id add-to-hosts
+    bench --site subdomain.mydomain.com add-to-hosts
 
 ### STEP 15 install ERPNext latest version in bench & site
 
@@ -168,15 +161,33 @@ Now press (Ctrl-X) to exit
     ###OR
     bench get-app https://github.com/frappe/erpnext --branch version-15
 
-    bench --site erp.wispro.biz.id install-app erpnext
+    bench --site subdomain.mydomain.com install-app erpnext
 
-    bench use erp.wispro.biz.id
+    bench use subdomain.mydomain.com
     
     bench start
 
 Open url http://[Server IP]:8000 to login 
     
-    
+---
+# Setting ERPNext for Production
 
+### Install ansible
+    sudo pip3 install ansible --break-system-packages
+
+### Enable scheduler
+    bench --site subdomain.mydomain.com enable-scheduler
+    
+### Disable maintenance mode
+    bench --site subdomain.mydomain.com set-maintenance-mode off
+
+### Setup production config
+    sudo bench setup production erpnext
+
+### Setup NGINX to apply the changes
+    sudo bench setup nginx
+    
+#### Restart Supervisor and Launch Production Mode
+    sudo supervisorctl restart all sudo bench setup production erpnext
 
     
