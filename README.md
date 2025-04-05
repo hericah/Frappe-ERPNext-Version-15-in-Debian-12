@@ -1,4 +1,4 @@
-# Frappe-ERPNext Version-15 in Ubuntu 22.04 LTS  
+# Frappe-ERPNext Version-15 in Debian 12 
 #### Update repository database link
       sudo apt update
       
