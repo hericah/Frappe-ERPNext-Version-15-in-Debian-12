@@ -29,7 +29,7 @@
 
 ### STEP 4 Install virtualenv
     
-    sudo apt install python3.11-venv
+    sudo apt install python3-virtualenv
     
 
 ### STEP 5 Install MariaDB
@@ -84,9 +84,9 @@
 
 ### STEP 7 Edit the mariadb configuration ( unicode character encoding )
 
-    sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+    sudo nano /etc/mysql/mariadb.conf.d/51-server.cnf
 
-add this to the 50-server.cnf file
+add this to the 51-server.cnf file
 
     
     [server]
@@ -114,18 +114,18 @@ add this to the 50-server.cnf file
 
 Now press (Ctrl-X) to exit
 
-    sudo service mysql restart
+    sudo systemctl restart mariadb
 
 ### STEP 8 install Redis
     
     sudo apt-get install redis-server
 
-### STEP 9 install Node.js 18.X package
+### STEP 9 install Node.js 20.X package
 
     sudo apt install curl 
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
     source ~/.profile
-    nvm install 18
+    nvm install 20
 
 ### STEP 10  install Yarn
 
@@ -140,25 +140,26 @@ Now press (Ctrl-X) to exit
 
 ### STEP 12 install frappe-bench
 
-    sudo -H pip3 install frappe-bench
+    virtualenv .venv
+    
+    source .venv/bin/active
+    
+    pip3 install frappe-bench
     
     bench --version
     
 ### STEP 13 initilise the frappe bench & install frappe latest version 
 
-    bench init frappe-bench --frappe-branch version-15 --python python3.11
+    bench init frappe-bench --frappe-branch version-15
     
     cd frappe-bench/
     bench start
     
 ### STEP 14 create a site in frappe bench 
     
-    bench new-site dcode.com
+    bench new-site myerpnext.com
     
-    bench --site dcode.com add-to-hosts
-
-Open url http://dcode.com:8000 to login 
-
+    bench --site erp.wispro.biz.id add-to-hosts
 
 ### STEP 15 install ERPNext latest version in bench & site
 
@@ -167,9 +168,13 @@ Open url http://dcode.com:8000 to login
     ###OR
     bench get-app https://github.com/frappe/erpnext --branch version-15
 
-    bench --site dcode.com install-app erpnext
+    bench --site erp.wispro.biz.id install-app erpnext
+
+    bench use erp.wispro.biz.id
     
     bench start
+
+Open url http://[Server IP]:8000 to login 
     
     
 
