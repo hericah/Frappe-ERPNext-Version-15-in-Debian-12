@@ -17,7 +17,7 @@
 
 
 ### STEP 1 Install dependencies
-    sudo apt-get install git python3-dev python3-setuptools python3-pip python3-virtualenv software-properties-common
+    sudo apt-get install git python3-dev python3.11-venv python3-setuptools python3-pip python3-virtualenv software-properties-common
 
 ### STEP 2 Install MariaDB
     sudo apt install mariadb-server
