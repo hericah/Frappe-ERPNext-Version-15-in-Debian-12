@@ -6,7 +6,7 @@
       sudo apt upgrade
       
 #### Create new user:
-      sudo adduser --home /home/(New-Frappe-User) (New-Frappe-User)
+      useradd -m -s /bin/bash (New-Frappe-User)
       usermod -aG sudo (New-Frappe-User)
       su (New-Frappe-User)
       cd /home/(New-Frappe-User)
